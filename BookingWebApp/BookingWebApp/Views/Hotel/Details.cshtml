@@ -1,0 +1,87 @@
+﻿@model BookingWebApp.Models.h_hotel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>h_hotel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.h_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.h_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.h_stars)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.h_stars)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.h_address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.h_address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.h_zip)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.h_zip)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.h_description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.h_description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.d_destination.d_city)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.d_destination.d_city)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ho_host.ho_firstname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ho_host.ho_firstname)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.h_hotelid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+Rooms of hotel:  <br />
+@Html.Partial("_room", Model.r_room)
+
+Ratings of hotel:  <br />
+@Html.Partial("_rating", Model.ra_rating)
+
+
+
+
+</div>
+
+

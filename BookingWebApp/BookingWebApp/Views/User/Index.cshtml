@@ -1,0 +1,52 @@
+﻿@model IEnumerable<BookingWebApp.Models.u_user>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.u_username)
+        </th>
+        <th>
+            @Html.ActionLink("Firstname", "Index", new { sortOrder = ViewBag.NameSortParm })
+        </th> 
+      
+        <th>
+            @Html.DisplayNameFor(model => model.u_lastName)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.u_password)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.u_username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.u_firstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.u_lastName)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.u_password)
+        </td>*@
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.u_username }) |
+            @Html.ActionLink("Details", "Details", new { id=item.u_username }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.u_username })
+        </td>
+    </tr>
+}
+
+</table>

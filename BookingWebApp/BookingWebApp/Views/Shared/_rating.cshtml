@@ -1,0 +1,48 @@
+﻿@model IEnumerable<BookingWebApp.Models.ra_rating>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ra_rating1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ra_comment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.h_hotel.h_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.u_user.u_firstName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ra_rating1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ra_comment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.h_hotel.h_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.u_user.u_firstName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ra_ratingId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ra_ratingId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ra_ratingId })
+        </td>
+    </tr>
+}
+
+</table>

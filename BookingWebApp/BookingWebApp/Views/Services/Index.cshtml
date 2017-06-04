@@ -1,0 +1,38 @@
+﻿@model IEnumerable<BookingWebApp.Models.se_services>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Firstname", "Index", new { sortOrder = ViewBag.NameSortParm })
+        </th> 
+        <th>
+            @Html.DisplayNameFor(model => model.se_services1)
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.se_services1)
+        </td>
+       
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.se_serviceid }) |
+            @Html.ActionLink("Details", "Details", new { id=item.se_serviceid }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.se_serviceid })
+        </td>
+    </tr>
+}
+
+</table>

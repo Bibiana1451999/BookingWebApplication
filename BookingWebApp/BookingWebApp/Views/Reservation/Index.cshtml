@@ -1,0 +1,51 @@
+﻿@model IEnumerable<BookingWebApp.Models.re_reservation>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.re_checkIn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.re_checkOut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.r_room.r_description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.u_user.u_firstName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.re_checkIn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.re_checkOut)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.r_room.r_description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.u_user.u_firstName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.re_reservationID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.re_reservationID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.re_reservationID })
+        </td>
+    </tr>
+}
+
+</table>

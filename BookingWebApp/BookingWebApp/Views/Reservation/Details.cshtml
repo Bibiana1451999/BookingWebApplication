@@ -1,0 +1,50 @@
+﻿@model BookingWebApp.Models.re_reservation
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>re_reservation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.re_checkIn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.re_checkIn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.re_checkOut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.re_checkOut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.r_room.r_description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.r_room.r_description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.u_user.u_firstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.u_user.u_firstName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.re_reservationID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

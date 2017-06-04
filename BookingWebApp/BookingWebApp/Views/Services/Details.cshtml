@@ -1,0 +1,38 @@
+﻿@model BookingWebApp.Models.se_services
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>se_services</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.se_services1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.se_services1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.h_hotel.h_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.h_hotel.h_name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.se_serviceid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+
+
+

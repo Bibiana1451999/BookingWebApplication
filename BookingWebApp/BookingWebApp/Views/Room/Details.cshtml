@@ -1,0 +1,58 @@
+﻿@model BookingWebApp.Models.r_room
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>r_room</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.r_beds)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.r_beds)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.r_price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.r_price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.r_description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.r_description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.h_hotel.h_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.h_hotel.h_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tr_typeOfRoom.tr_type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tr_typeOfRoom.tr_type)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.r_number }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

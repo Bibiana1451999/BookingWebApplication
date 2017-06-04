@@ -1,0 +1,83 @@
+﻿@model IEnumerable<BookingWebApp.Models.h_hotel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm())
+{ <p> Find by name: @Html.TextBox("SearchString") <input type="submit" value="Search" /></p> }
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.h_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.h_stars)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.h_address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.h_zip)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.h_description)
+        </th>
+        <th>
+           @Html.DisplayNameFor(model => model.d_destination.d_city)
+        </th>
+   
+
+        @*<th>
+            @Html.DisplayNameFor(model => model.ho_host.ho_firstname)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.h_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.h_stars)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.h_address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.h_zip)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.h_description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.d_destination.d_city)
+        </td>
+        <td>
+     
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.ho_host.ho_firstname)
+        </td>*@
+        <td>
+
+
+            @Html.ActionLink( "Index","rating", new { id = item.h_hotelid })|
+
+
+
+            @Html.ActionLink("Edit", "Edit", new { id=item.h_hotelid }) |
+            @Html.ActionLink("Details", "Details", new { id=item.h_hotelid }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.h_hotelid })
+         
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,25 @@
+﻿@model IEnumerable<BookingWebApp.Models.r_room>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm())
+{
+    @Html.DropDownList("hotelFilter", null, "wähle Hotel", htmlAttributes: new { @class = "form-control" })
+    @Html.DropDownList("roomFilter", null, "wähle Raumtyp", htmlAttributes: new { @class = "form-control" })
+
+    <div class="form-group">
+        @*<div class="col-md-offset-2 col-md-10">*@
+        <input type="submit" value="Search" class="btn btn-default" />
+        @*</div>*@
+    </div>
+}
+
+@Html.Partial("_room", Model)
