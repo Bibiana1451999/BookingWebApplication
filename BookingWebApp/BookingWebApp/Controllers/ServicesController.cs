@@ -12,7 +12,7 @@ namespace BookingWebApp.Controllers
 {
     public class ServicesController : Controller
     {
-        private Entities3 db = new Entities3();
+        private Entities4 db = new Entities4();
 
         // GET: Services
         public ActionResult Index(string sortOrder)
@@ -73,7 +73,7 @@ namespace BookingWebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.se_h_hotel = new SelectList(db.h_hotel, "h_hotelid", "h_name", se_services.se_h_hotel);
+            ViewBag.se_h_hotel = new SelectList(db.h_hotel, "h_hotelid", "h_name", se_services.se_serviceid);
             return View(se_services);
         }
 
@@ -89,7 +89,7 @@ namespace BookingWebApp.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.se_h_hotel = new SelectList(db.h_hotel, "h_hotelid", "h_name", se_services.se_h_hotel);
+            ViewBag.se_h_hotel = new SelectList(db.h_hotel, "h_hotelid", "h_name", se_services.se_serviceid);
             return View(se_services);
         }
 
@@ -106,7 +106,7 @@ namespace BookingWebApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.se_h_hotel = new SelectList(db.h_hotel, "h_hotelid", "h_name", se_services.se_h_hotel);
+            ViewBag.se_h_hotel = new SelectList(db.h_hotel, "h_hotelid", "h_name", se_services.se_serviceid);
             return View(se_services);
         }
 

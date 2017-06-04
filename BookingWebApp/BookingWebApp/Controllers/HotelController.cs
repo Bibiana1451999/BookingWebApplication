@@ -13,23 +13,45 @@ namespace BookingWebApp.Controllers
 {
     public class HotelController : Controller
     {
-        private Entities3 db = new Entities3();
+        private Entities4 db = new Entities4();
 
         // GET: Hotel
    
-        public ActionResult Index(string searchString)
+        public ActionResult Index(string sortOrder, string searchString, string currentFilter, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+          //  ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
            
-            var h_hotel = db.h_hotel.Include(h => h.d_destination).Include(h => h.ho_host);
-          
+                        var h_hotel = db.h_hotel.Include(h => h.d_destination).Include(h => h.ho_host);
+
+            if (searchString != null)
+            {
+               
+                page = 1;
+            }
+            else { searchString = currentFilter; }
+            ViewBag.CurrentFilter = searchString;
 
             //var hotels = from h in db.h_hotel
             //             select h;
             if (!String.IsNullOrEmpty(searchString)) { h_hotel = h_hotel.Where(h => h.h_name.ToUpper().Contains(searchString.ToUpper())); }
 
-           
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    h_hotel = h_hotel.OrderByDescending(s => s.h_name);
+                    break;
+               
+                
+                default: // Name ascending
+                    h_hotel = h_hotel.OrderBy(s => s.h_name);
+                    break;
+            }
 
-            return View(h_hotel.ToList());
+            int pageSize = 8;
+            int pageNumber = (page ?? 1);
+            return View(h_hotel.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Hotel/Details/5

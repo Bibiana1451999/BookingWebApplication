@@ -12,7 +12,7 @@ namespace BookingWebApp.Controllers
 {
     public class RatingController : Controller
     {
-        private Entities3 db = new Entities3();
+        private Entities4 db = new Entities4();
 
         // GET: Rating
         public ActionResult Index(int? id)

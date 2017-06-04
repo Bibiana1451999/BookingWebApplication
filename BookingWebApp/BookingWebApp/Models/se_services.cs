@@ -14,10 +14,16 @@ namespace BookingWebApp.Models
     
     public partial class se_services
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public se_services()
+        {
+            this.h_hotel = new HashSet<h_hotel>();
+        }
+    
         public int se_serviceid { get; set; }
         public string se_services1 { get; set; }
-        public int se_h_hotel { get; set; }
     
-        public virtual h_hotel h_hotel { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<h_hotel> h_hotel { get; set; }
     }
 }

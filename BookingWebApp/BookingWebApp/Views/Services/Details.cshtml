@@ -18,13 +18,7 @@
             @Html.DisplayFor(model => model.se_services1)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.h_hotel.h_name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.h_hotel.h_name)
-        </dd>
+        
 
     </dl>
 </div>
@@ -34,5 +28,8 @@
 </p>
 
 
+
+Ratings of hotel:  <br />
+@Html.Partial("_hotel", Model.h_hotel)
 
 

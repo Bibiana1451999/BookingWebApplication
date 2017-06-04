@@ -4,22 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6ea28e0395da4d06b46ec9a0ca3d8a27" Name="Diagram1">
-        <EntityTypeShape EntityType="ebookingModel.d_destination" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ebookingModel.h_hotel" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+      <Diagram DiagramId="78cf223f57a846dcbffd7661a0980f4d" Name="Diagram1">
+        <EntityTypeShape EntityType="ebookingModel.d_destination" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ebookingModel.h_hotel" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ebookingModel.ho_host" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ebookingModel.r_room" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ebookingModel.ra_rating" Width="1.5" PointX="8.25" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ebookingModel.re_reservation" Width="1.5" PointX="10.5" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ebookingModel.se_services" Width="1.5" PointX="5.25" PointY="11.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ebookingModel.sysdiagram" Width="1.5" PointX="5.75" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ebookingModel.tr_typeOfRoom" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ebookingModel.r_room" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ebookingModel.ra_rating" Width="1.5" PointX="8.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ebookingModel.re_reservation" Width="1.5" PointX="10.5" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ebookingModel.se_services" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ebookingModel.sysdiagram" Width="1.5" PointX="5.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ebookingModel.tr_typeOfRoom" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="ebookingModel.u_user" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="ebookingModel.FK_h_hotel_ToDestination" ManuallyRouted="false" />
         <AssociationConnector Association="ebookingModel.FK_h_hotel_ToHost" ManuallyRouted="false" />
+        <AssociationConnector Association="ebookingModel.FK_h_hotel_ToServices" ManuallyRouted="false" />
         <AssociationConnector Association="ebookingModel.FK_r_room_ToHotel" ManuallyRouted="false" />
         <AssociationConnector Association="ebookingModel.FK_ra_rating_To_h_hotel" ManuallyRouted="false" />
-        <AssociationConnector Association="ebookingModel.FK_se_services_ToHotel" ManuallyRouted="false" />
         <AssociationConnector Association="ebookingModel.FK_r_room_ToRoom" ManuallyRouted="false" />
         <AssociationConnector Association="ebookingModel.FK_re_reservation_ToRoom" ManuallyRouted="false" />
         <AssociationConnector Association="ebookingModel.FK_ra_rating_To_u_user" ManuallyRouted="false" />

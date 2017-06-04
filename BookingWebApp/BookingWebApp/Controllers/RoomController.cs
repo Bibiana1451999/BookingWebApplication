@@ -12,7 +12,7 @@ namespace BookingWebApp.Controllers
 {
     public class RoomController : Controller
     {
-        private Entities3 db = new Entities3();
+        private Entities4 db = new Entities4();
 
         // GET: Room
         public ActionResult Index(string hotelFilter, string roomFilter)

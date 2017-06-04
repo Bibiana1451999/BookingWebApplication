@@ -26,6 +26,7 @@
           <Property Name="h_description" Type="text" />
           <Property Name="h_d_country" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="h_ho_host" Type="varchar" MaxLength="50" />
+          <Property Name="h_se_service" Type="int" />
         </EntityType>
         <EntityType Name="ho_host">
           <Key>
@@ -73,7 +74,6 @@
           </Key>
           <Property Name="se_serviceid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="se_services" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="se_h_hotel" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -99,6 +99,8 @@
           <Property Name="u_firstName" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="u_lastName" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="u_password" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="u_email" Type="varchar" MaxLength="100" />
+          <Property Name="u_dateOfBirth" Type="date" />
         </EntityType>
         <Association Name="FK_h_hotel_ToDestination">
           <End Role="d_destination" Type="Self.d_destination" Multiplicity="1" />
@@ -123,6 +125,18 @@
             </Principal>
             <Dependent Role="h_hotel">
               <PropertyRef Name="h_ho_host" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_h_hotel_ToServices">
+          <End Role="se_services" Type="Self.se_services" Multiplicity="0..1" />
+          <End Role="h_hotel" Type="Self.h_hotel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="se_services">
+              <PropertyRef Name="se_serviceid" />
+            </Principal>
+            <Dependent Role="h_hotel">
+              <PropertyRef Name="h_se_service" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -198,18 +212,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_se_services_ToHotel">
-          <End Role="h_hotel" Type="Self.h_hotel" Multiplicity="1" />
-          <End Role="se_services" Type="Self.se_services" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="h_hotel">
-              <PropertyRef Name="h_hotelid" />
-            </Principal>
-            <Dependent Role="se_services">
-              <PropertyRef Name="se_h_hotel" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="ebookingModelStoreContainer">
           <EntitySet Name="d_destination" EntityType="Self.d_destination" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="h_hotel" EntityType="Self.h_hotel" Schema="dbo" store:Type="Tables" />
@@ -227,6 +229,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_h_hotel_ToHost" Association="Self.FK_h_hotel_ToHost">
             <End Role="ho_host" EntitySet="ho_host" />
+            <End Role="h_hotel" EntitySet="h_hotel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_h_hotel_ToServices" Association="Self.FK_h_hotel_ToServices">
+            <End Role="se_services" EntitySet="se_services" />
             <End Role="h_hotel" EntitySet="h_hotel" />
           </AssociationSet>
           <AssociationSet Name="FK_r_room_ToHotel" Association="Self.FK_r_room_ToHotel">
@@ -252,10 +258,6 @@
           <AssociationSet Name="FK_re_reservation_ToUser" Association="Self.FK_re_reservation_ToUser">
             <End Role="u_user" EntitySet="u_user" />
             <End Role="re_reservation" EntitySet="re_reservation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_se_services_ToHotel" Association="Self.FK_se_services_ToHotel">
-            <End Role="h_hotel" EntitySet="h_hotel" />
-            <End Role="se_services" EntitySet="se_services" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -285,11 +287,12 @@
           <Property Name="h_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="h_d_country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="h_ho_host" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="h_se_service" Type="Int32" />
           <NavigationProperty Name="d_destination" Relationship="Self.FK_h_hotel_ToDestination" FromRole="h_hotel" ToRole="d_destination" />
           <NavigationProperty Name="ho_host" Relationship="Self.FK_h_hotel_ToHost" FromRole="h_hotel" ToRole="ho_host" />
+          <NavigationProperty Name="se_services" Relationship="Self.FK_h_hotel_ToServices" FromRole="h_hotel" ToRole="se_services" />
           <NavigationProperty Name="r_room" Relationship="Self.FK_r_room_ToHotel" FromRole="h_hotel" ToRole="r_room" />
           <NavigationProperty Name="ra_rating" Relationship="Self.FK_ra_rating_To_h_hotel" FromRole="h_hotel" ToRole="ra_rating" />
-          <NavigationProperty Name="se_services" Relationship="Self.FK_se_services_ToHotel" FromRole="h_hotel" ToRole="se_services" />
         </EntityType>
         <EntityType Name="ho_host">
           <Key>
@@ -345,8 +348,7 @@
           </Key>
           <Property Name="se_serviceid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="se_services1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="se_h_hotel" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="h_hotel" Relationship="Self.FK_se_services_ToHotel" FromRole="se_services" ToRole="h_hotel" />
+          <NavigationProperty Name="h_hotel" Relationship="Self.FK_h_hotel_ToServices" FromRole="se_services" ToRole="h_hotel" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -373,6 +375,8 @@
           <Property Name="u_firstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="u_lastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="u_password" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="u_email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="u_dateOfBirth" Type="DateTime" Precision="0" />
           <NavigationProperty Name="ra_rating" Relationship="Self.FK_ra_rating_To_u_user" FromRole="u_user" ToRole="ra_rating" />
           <NavigationProperty Name="re_reservation" Relationship="Self.FK_re_reservation_ToUser" FromRole="u_user" ToRole="re_reservation" />
         </EntityType>
@@ -402,6 +406,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_h_hotel_ToServices">
+          <End Role="se_services" Type="Self.se_services" Multiplicity="0..1" />
+          <End Role="h_hotel" Type="Self.h_hotel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="se_services">
+              <PropertyRef Name="se_serviceid" />
+            </Principal>
+            <Dependent Role="h_hotel">
+              <PropertyRef Name="h_se_service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_r_room_ToHotel">
           <End Role="h_hotel" Type="Self.h_hotel" Multiplicity="1" />
           <End Role="r_room" Type="Self.r_room" Multiplicity="*" />
@@ -423,18 +439,6 @@
             </Principal>
             <Dependent Role="ra_rating">
               <PropertyRef Name="ra_h_hotel" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_se_services_ToHotel">
-          <End Role="h_hotel" Type="Self.h_hotel" Multiplicity="1" />
-          <End Role="se_services" Type="Self.se_services" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="h_hotel">
-              <PropertyRef Name="h_hotelid" />
-            </Principal>
-            <Dependent Role="se_services">
-              <PropertyRef Name="se_h_hotel" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -486,7 +490,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Entities3" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities4" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="d_destination" EntityType="Self.d_destination" />
           <EntitySet Name="h_hotel" EntityType="Self.h_hotel" />
           <EntitySet Name="ho_host" EntityType="Self.ho_host" />
@@ -505,6 +509,10 @@
             <End Role="ho_host" EntitySet="ho_host" />
             <End Role="h_hotel" EntitySet="h_hotel" />
           </AssociationSet>
+          <AssociationSet Name="FK_h_hotel_ToServices" Association="Self.FK_h_hotel_ToServices">
+            <End Role="se_services" EntitySet="se_services" />
+            <End Role="h_hotel" EntitySet="h_hotel" />
+          </AssociationSet>
           <AssociationSet Name="FK_r_room_ToHotel" Association="Self.FK_r_room_ToHotel">
             <End Role="h_hotel" EntitySet="h_hotel" />
             <End Role="r_room" EntitySet="r_room" />
@@ -512,10 +520,6 @@
           <AssociationSet Name="FK_ra_rating_To_h_hotel" Association="Self.FK_ra_rating_To_h_hotel">
             <End Role="h_hotel" EntitySet="h_hotel" />
             <End Role="ra_rating" EntitySet="ra_rating" />
-          </AssociationSet>
-          <AssociationSet Name="FK_se_services_ToHotel" Association="Self.FK_se_services_ToHotel">
-            <End Role="h_hotel" EntitySet="h_hotel" />
-            <End Role="se_services" EntitySet="se_services" />
           </AssociationSet>
           <AssociationSet Name="FK_r_room_ToRoom" Association="Self.FK_r_room_ToRoom">
             <End Role="tr_typeOfRoom" EntitySet="tr_typeOfRoom" />
@@ -539,7 +543,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ebookingModelStoreContainer" CdmEntityContainer="Entities3">
+        <EntityContainerMapping StorageEntityContainer="ebookingModelStoreContainer" CdmEntityContainer="Entities4">
           <EntitySetMapping Name="d_destination">
             <EntityTypeMapping TypeName="ebookingModel.d_destination">
               <MappingFragment StoreEntitySet="d_destination">
@@ -560,6 +564,7 @@
                 <ScalarProperty Name="h_description" ColumnName="h_description" />
                 <ScalarProperty Name="h_d_country" ColumnName="h_d_country" />
                 <ScalarProperty Name="h_ho_host" ColumnName="h_ho_host" />
+                <ScalarProperty Name="h_se_service" ColumnName="h_se_service" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -612,7 +617,6 @@
               <MappingFragment StoreEntitySet="se_services">
                 <ScalarProperty Name="se_serviceid" ColumnName="se_serviceid" />
                 <ScalarProperty Name="se_services1" ColumnName="se_services" />
-                <ScalarProperty Name="se_h_hotel" ColumnName="se_h_hotel" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -641,6 +645,8 @@
                 <ScalarProperty Name="u_firstName" ColumnName="u_firstName" />
                 <ScalarProperty Name="u_lastName" ColumnName="u_lastName" />
                 <ScalarProperty Name="u_password" ColumnName="u_password" />
+                <ScalarProperty Name="u_email" ColumnName="u_email" />
+                <ScalarProperty Name="u_dateOfBirth" ColumnName="u_dateOfBirth" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

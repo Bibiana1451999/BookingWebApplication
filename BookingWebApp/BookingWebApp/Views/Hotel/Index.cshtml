@@ -1,36 +1,39 @@
-﻿@model IEnumerable<BookingWebApp.Models.h_hotel>
+﻿@*@model IEnumerable<BookingWebApp.Models.h_hotel>*@
+@model PagedList.IPagedList<BookingWebApp.Models.h_hotel> 
+@using PagedList.Mvc; 
+<link href = "~/Content/PagedList.css" rel = "stylesheet" type = "text/css" />
 
-@{
-    ViewBag.Title = "Index";
+
+@{ ViewBag.Title = "Hotels";
 }
-
 <h2>Hotels</h2>
+
 
 <p>
     @Html.ActionLink("Create New", "Create")
-</p>
+</p> @using (Html.BeginForm("Index", "Hotel", FormMethod.Get))
 
-@using (Html.BeginForm())
-{ <p> Find by name: @Html.TextBox("SearchString") <input type="submit" value="Search" /></p> }
+{ <p> Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string) <input type="submit" value="Search" /></p> }
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.h_name)
+            @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        
+        <th>
+          Stars
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.h_stars)
+           Address
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.h_address)
+            ZIP
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.h_zip)
+            Description
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.h_description)
-        </th>
-        <th>
-           @Html.DisplayNameFor(model => model.d_destination.d_city)
+           Destination
         </th>
    
 
@@ -42,6 +45,8 @@
 
 @foreach (var item in Model) {
     <tr>
+
+
         <td>
             @Html.DisplayFor(modelItem => item.h_name)
         </td>
@@ -60,9 +65,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.d_destination.d_city)
         </td>
-        <td>
-     
-        </td>
+        
         @*<td>
             @Html.DisplayFor(modelItem => item.ho_host.ho_firstname)
         </td>*@
@@ -82,3 +85,5 @@
 }
 
 </table>
+<br /> Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

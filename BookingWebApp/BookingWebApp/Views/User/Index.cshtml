@@ -21,6 +21,13 @@
         <th>
             @Html.DisplayNameFor(model => model.u_lastName)
         </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.u_email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.u_dateOfBirth)
+        </th>
         @*<th>
             @Html.DisplayNameFor(model => model.u_password)
         </th>*@
@@ -37,6 +44,14 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.u_lastName)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.u_email)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.u_dateOfBirth)
         </td>
         @*<td>
             @Html.DisplayFor(modelItem => item.u_password)
