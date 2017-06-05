@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<BookingWebApp.Models.u_user>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Users";
 }
 
 <h2>Index</h2>
@@ -13,24 +13,25 @@
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.u_username)
-        </th>
+                </th>
+
         <th>
             @Html.ActionLink("Firstname", "Index", new { sortOrder = ViewBag.NameSortParm })
-        </th> 
-      
+        </th>
+       
         <th>
             @Html.DisplayNameFor(model => model.u_lastName)
         </th>
-
+        
         <th>
             @Html.DisplayNameFor(model => model.u_email)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.u_dateOfBirth)
         </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.u_password)
-        </th>*@
+        <th>
+            Host
+        </th>
         <th></th>
     </tr>
 
@@ -49,13 +50,12 @@
         <td>
             @Html.DisplayFor(modelItem => item.u_email)
         </td>
-
         <td>
             @Html.DisplayFor(modelItem => item.u_dateOfBirth)
         </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.u_password)
-        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.u_host)
+        </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.u_username }) |
             @Html.ActionLink("Details", "Details", new { id=item.u_username }) |

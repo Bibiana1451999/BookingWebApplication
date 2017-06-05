@@ -23,6 +23,18 @@ namespace BookingWebApp.Models
         public string u_lastName { get; set; }
         public string u_password { get; set; }
 
+        [Display(Name = "E-mail")]
+
+        public string u_email { get; set; }
+
+        [Display(Name = "Date")]
+
+        [DataType(DataType.Date)]
+
+        public Nullable<System.DateTime> u_dateOfBirth { get; set; }
+
+    
+        
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ra_rating> ra_rating { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

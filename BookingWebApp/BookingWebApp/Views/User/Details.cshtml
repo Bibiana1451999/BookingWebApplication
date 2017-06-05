@@ -26,6 +26,8 @@
             @Html.DisplayFor(model => model.u_lastName)
         </dd>
 
+      
+
         <dt>
             @Html.DisplayNameFor(model => model.u_email)
         </dt>
@@ -42,16 +44,23 @@
             @Html.DisplayFor(model => model.u_dateOfBirth)
         </dd>
 
+        <dt>
+           Host
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.u_host)
+        </dd>
+
     </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.u_username }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
-User Ratings:  <br />
+
+Rating of user:  <br />
 @Html.Partial("_rating", Model.ra_rating)
 
-
-
-
 </div>
+

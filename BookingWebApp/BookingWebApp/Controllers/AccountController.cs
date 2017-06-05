@@ -25,7 +25,7 @@ namespace BookingWebApp.Controllers
 
             if (ModelState.IsValid)
             {
-                using (var db = new Entities4())
+                using (var db = new Entities7())
                 {
                     var erg = from u in db.u_user
                               where u.u_username == model.UserName && u.u_password == model.Password

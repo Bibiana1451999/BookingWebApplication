@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<BookingWebApp.Models.se_services>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Services";
 }
 
 <h2>Index</h2>
@@ -12,11 +12,9 @@
 <table class="table">
     <tr>
         <th>
-            @Html.ActionLink("Firstname", "Index", new { sortOrder = ViewBag.NameSortParm })
+            @Html.ActionLink("Service", "Index", new { sortOrder = ViewBag.NameSortParm })
         </th> 
-        <th>
-            @Html.DisplayNameFor(model => model.se_services1)
-        </th>
+        
         
         <th></th>
     </tr>

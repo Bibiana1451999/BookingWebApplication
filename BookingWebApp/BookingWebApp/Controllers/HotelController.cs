@@ -13,7 +13,7 @@ namespace BookingWebApp.Controllers
 {
     public class HotelController : Controller
     {
-        private Entities4 db = new Entities4();
+        private Entities7 db = new Entities7();
 
         // GET: Hotel
    
@@ -23,8 +23,8 @@ namespace BookingWebApp.Controllers
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
           //  ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
            
-                        var h_hotel = db.h_hotel.Include(h => h.d_destination).Include(h => h.ho_host);
-
+            var h_hotel = db.h_hotel.Include(h => h.d_destination).Include(h => h.ho_host);
+            
             if (searchString != null)
             {
                

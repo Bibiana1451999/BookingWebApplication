@@ -12,7 +12,7 @@ namespace BookingWebApp.Controllers
 {
     public class UserController : Controller
     {
-        private Entities4 db = new Entities4();
+        private Entities7 db = new Entities7();
 
         // GET: User
         public ActionResult Index(string sortOrder)
@@ -36,6 +36,7 @@ namespace BookingWebApp.Controllers
 
             return View(users.ToList());
         }
+
 
         // GET: User/Details/5
         public ActionResult Details(string id)
@@ -63,7 +64,7 @@ namespace BookingWebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "u_username,u_firstName,u_lastName,u_password")] u_user u_user)
+        public ActionResult Create([Bind(Include = "u_username,u_firstName,u_lastName,u_password,u_email,u_dateOfBirth,u_host")] u_user u_user)
         {
             if (ModelState.IsValid)
             {
@@ -95,7 +96,7 @@ namespace BookingWebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "u_username,u_firstName,u_lastName,u_password")] u_user u_user)
+        public ActionResult Edit([Bind(Include = "u_username,u_firstName,u_lastName,u_password,u_email,u_dateOfBirth,u_host")] u_user u_user)
         {
             if (ModelState.IsValid)
             {

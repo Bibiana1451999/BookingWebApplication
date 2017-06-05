@@ -101,6 +101,7 @@
           <Property Name="u_password" Type="varchar" MaxLength="1000" Nullable="false" />
           <Property Name="u_email" Type="varchar" MaxLength="100" />
           <Property Name="u_dateOfBirth" Type="date" />
+          <Property Name="u_host" Type="bit" />
         </EntityType>
         <Association Name="FK_h_hotel_ToDestination">
           <End Role="d_destination" Type="Self.d_destination" Multiplicity="1" />
@@ -377,6 +378,7 @@
           <Property Name="u_password" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="u_email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="u_dateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="u_host" Type="Boolean" />
           <NavigationProperty Name="ra_rating" Relationship="Self.FK_ra_rating_To_u_user" FromRole="u_user" ToRole="ra_rating" />
           <NavigationProperty Name="re_reservation" Relationship="Self.FK_re_reservation_ToUser" FromRole="u_user" ToRole="re_reservation" />
         </EntityType>
@@ -490,7 +492,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Entities4" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities7" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="d_destination" EntityType="Self.d_destination" />
           <EntitySet Name="h_hotel" EntityType="Self.h_hotel" />
           <EntitySet Name="ho_host" EntityType="Self.ho_host" />
@@ -543,7 +545,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ebookingModelStoreContainer" CdmEntityContainer="Entities4">
+        <EntityContainerMapping StorageEntityContainer="ebookingModelStoreContainer" CdmEntityContainer="Entities7">
           <EntitySetMapping Name="d_destination">
             <EntityTypeMapping TypeName="ebookingModel.d_destination">
               <MappingFragment StoreEntitySet="d_destination">
@@ -647,6 +649,7 @@
                 <ScalarProperty Name="u_password" ColumnName="u_password" />
                 <ScalarProperty Name="u_email" ColumnName="u_email" />
                 <ScalarProperty Name="u_dateOfBirth" ColumnName="u_dateOfBirth" />
+                <ScalarProperty Name="u_host" ColumnName="u_host" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

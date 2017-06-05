@@ -12,7 +12,7 @@ namespace BookingWebApp.Controllers
 {
     public class ServicesController : Controller
     {
-        private Entities4 db = new Entities4();
+        private Entities7 db = new Entities7();
 
         // GET: Services
         public ActionResult Index(string sortOrder)
@@ -22,7 +22,7 @@ namespace BookingWebApp.Controllers
 
 
                 var se_services = db.se_services.Include(s => s.h_hotel);
-
+            
                 switch (sortOrder)
                 {
                     case "name_desc":

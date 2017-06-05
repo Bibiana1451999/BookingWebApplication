@@ -27,6 +27,7 @@ namespace BookingWebApp.Models
         public string u_password { get; set; }
         public string u_email { get; set; }
         public Nullable<System.DateTime> u_dateOfBirth { get; set; }
+        public bool u_host { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ra_rating> ra_rating { get; set; }

@@ -13,10 +13,10 @@ namespace BookingWebApp.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Entities4 : DbContext
+    public partial class Entities7 : DbContext
     {
-        public Entities4()
-            : base("name=Entities4")
+        public Entities7()
+            : base("name=Entities7")
         {
         }
     
