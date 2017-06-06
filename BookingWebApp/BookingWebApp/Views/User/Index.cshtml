@@ -1,18 +1,25 @@
-﻿@model IEnumerable<BookingWebApp.Models.u_user>
+﻿@*@model IEnumerable<BookingWebApp.Models.u_user>*@
+@model PagedList.IPagedList<BookingWebApp.Models.u_user>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Users";
 }
 
-<h2>Index</h2>
+<h2>Users</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+@using (Html.BeginForm("Index", "User", FormMethod.Get))
+{ <p> Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string) <input type="submit" value="Search" /></p> }
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.u_username)
+            Username
                 </th>
 
         <th>
@@ -20,14 +27,14 @@
         </th>
        
         <th>
-            @Html.DisplayNameFor(model => model.u_lastName)
+           Lastname
         </th>
         
         <th>
-            @Html.DisplayNameFor(model => model.u_email)
+         Email
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.u_dateOfBirth)
+            Date of birth
         </th>
         <th>
             Host
@@ -65,3 +72,7 @@
 }
 
 </table>
+<br /> Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+

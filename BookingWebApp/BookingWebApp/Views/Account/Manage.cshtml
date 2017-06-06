@@ -1,0 +1,60 @@
+﻿@model BookingWebApp.Models.u_user
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>u_user</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.u_firstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.u_firstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.u_lastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.u_lastName)
+        </dd>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.u_email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.u_email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.u_dateOfBirth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.u_dateOfBirth)
+        </dd>
+
+        <dt>
+            Host
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.u_host)
+        </dd>
+
+    </dl>
+</div>
+
+
+
+

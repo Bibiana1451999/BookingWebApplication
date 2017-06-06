@@ -11,20 +11,37 @@ namespace BookingWebApp.Controllers
     public class AccountController : Controller
     {
         // GET: Account
+
+        Entities7 db = new Entities7();
+        private u_user slogin;
+
+        public object EncryptDecrypt { get; private set; }
+
         public ActionResult Login()
         {
             return View();
 
         }
 
+        public ActionResult Manage(int? id)
+        {
+            var u_user = db.u_user.Find(id);
+
+            return View(u_user);
+        }
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(Loginmodel model, string returnUrl)
+
+          
         {
-           u_user slogin;
+       u_user slogin;
 
             if (ModelState.IsValid)
             {
+               // var p = EncryptDecrypt.Decrypt(model.Password, "a15s8f5s6e2s3g1w5");
                 using (var db = new Entities7())
                 {
                     var erg = from u in db.u_user
@@ -52,7 +69,7 @@ namespace BookingWebApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult LogOff()
+        public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");

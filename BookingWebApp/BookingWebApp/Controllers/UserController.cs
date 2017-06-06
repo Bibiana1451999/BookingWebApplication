@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BookingWebApp.Models;
+using PagedList;
 
 namespace BookingWebApp.Controllers
 {
@@ -15,7 +16,8 @@ namespace BookingWebApp.Controllers
         private Entities7 db = new Entities7();
 
         // GET: User
-        public ActionResult Index(string sortOrder)
+        [Authorize]
+        public ActionResult Index(string sortOrder, string searchString, string currentFilter, int? page)
 
         {
             ViewBag.CurrentSort = sortOrder;
@@ -23,6 +25,19 @@ namespace BookingWebApp.Controllers
 
 
             var users = db.u_user.Include(u => u.ra_rating);
+
+
+            if (searchString != null)
+            {
+
+                page = 1;
+            }
+            else { searchString = currentFilter; }
+            ViewBag.CurrentFilter = searchString;
+
+            //var hotels = from h in db.h_hotel
+            //             select h;
+            if (!String.IsNullOrEmpty(searchString)) { users = users.Where(h => h.u_firstName.ToUpper().Contains(searchString.ToUpper())); }
 
             switch (sortOrder)
             {
@@ -34,7 +49,10 @@ namespace BookingWebApp.Controllers
                     break;
             }
 
-            return View(users.ToList());
+            int pageSize = 8;
+            int pageNumber = (page ?? 1);
+
+            return View(users.ToPagedList(pageNumber, pageSize));
         }
 
 
