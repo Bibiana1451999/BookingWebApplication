@@ -25,7 +25,8 @@ namespace BookingWebApp.Controllers
 
         public ActionResult Manage(int? id)
         {
-            var u_user = db.u_user.Find(id);
+            string username = User.Identity.Name;
+            var u_user = db.u_user.Find(username);
 
             return View(u_user);
         }
